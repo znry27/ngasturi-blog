@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="sale_list" name="Daftar Sales">&lt;!DOCTYPE html&gt;
+		<html>
+			<head>
+				<title>Latihan Controller Odoo</title>
+
+				<!-- CDN Asset -->
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+				<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+				<!-- Custom Asset -->
+				<link rel="stylesheet" href="/tutorial_controller/static/css/custom.css"/>
+				<script type="text/javascript" src="/tutorial_controller/static/js/custom.js"></script>
+			</head>
+		</html>
+		<body>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="sale-title">Daftar Sales Order</h2>
+						<table class="table table-hover">
+							<tr>
+								<th>No Dokumen</th>
+								<th>Customer</th>
+								<th>Total</th>
+								<th>Action</th>
+							</tr>
+							<t t-foreach="orders" t-as="order">
+								<tr>
+									<td>
+										<t t-esc="order.name" />
+									</td>
+									<td>
+										<t t-esc="order.partner_id.name" />
+									</td>
+									<td>
+										<t t-esc="order.amount_total" />
+									</td>
+									<td>
+										<button class="btn btn-sm btn-danger btn-delete-sale" t-att-data-sale-number="order.name">Delete</button>
+									</td>
+								</tr>
+							</t>
+						</table>
+					</div>
+				</div>
+			</div>
+		</body>
+	</template>
+
+	<template id="assets_frontend_inherit" inherit_id="website.assets_frontend">
+		<!-- masukkan file css custom paling bawah -->
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" href="/tutorial_controller/static/css/custom.css"/>
+        </xpath>
+        <!-- masukkan file javascript custom paling bawah -->
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript" src="/tutorial_controller/static/js/custom.js"></script>
+        </xpath>
+    </template>
+
+    <template id="website_sale_list" name="Daftar Sales Website">
+    	<!-- panggil view website.layout agar navbar dll tampil -->
+        <t t-call="website.layout">
+        	<!-- tambah judul halaman -->
+        	<t t-set="additional_title" t-value="'Daftar Sales'" />
+            <div id="wrap">
+                <div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="sale-title">Daftar Sales Order</h2>
+							<table class="table table-hover">
+								<tr>
+									<th>No Dokumen</th>
+									<th>Customer</th>
+									<th>Total</th>
+									<th>Action</th>
+								</tr>
+								<t t-foreach="orders" t-as="order">
+									<tr>
+										<td>
+											<t t-esc="order.name" />
+										</td>
+										<td>
+											<t t-esc="order.partner_id.name" />
+										</td>
+										<td>
+											<t t-esc="order.amount_total" />
+										</td>
+										<td>
+											<button class="btn btn-sm btn-danger btn-delete-sale" t-att-data-sale-number="order.name">Delete</button>
+										</td>
+									</tr>
+								</t>
+							</table>
+						</div>
+					</div>
+				</div>
+            </div>
+        </t>
+    </template>
+
+    <template id="sale_support" name="Sales Support">
+        <t t-call="website.layout">
+        	<t t-set="additional_title" t-value="'Sales Support'" />
+            <div id="wrap">
+                <div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="sale-title">Sales Support</h2>	
+							<form action="/sale/support/response" method="post">
+								<!-- 
+									set csrf token, agar lebih secure,
+									jika tidak diset, pastikan pada controller paremeter csrf diset False
+								-->
+								<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+			                                <label class="col-form-label">Nama</label>
+			                                <input type="text" name="name" class="form-control" />
+			                            </div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+			                                <label class="col-form-label">Email</label>
+			                                <input type="email" name="email" class="form-control" />
+			                            </div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+			                                <label class="col-form-label">Keluhan</label>
+			                                <textarea rows="5" class="form-control" name="issue"></textarea>
+			                            </div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12">
+										<button type="submit" class="btn btn-success">Kirim</button>
+									</div>
+								</div>
+							</form>						
+						</div>						
+					</div>
+				</div>
+            </div>
+        </t>
+    </template>
+
+    <template id="sale_support_response" name="Sales Support Response">
+        <t t-call="website.layout">
+        	<t t-set="additional_title" t-value="'Sales Support'" />
+            <div id="wrap">
+                <div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="sale-title">Sales Support</h2>	
+							<h3>Terima kasih atas feedback anda. Berikut ini adalah data yang anda masukkan</h3>
+							<h3>Nama : <t t-esc="name"/></h3>
+							<h3>Email : <t t-esc="email"/></h3>		
+							<h3>Keluhan : <t t-esc="issue"/></h3>	
+						</div>						
+					</div>
+				</div>
+            </div>
+        </t>
+    </template>
+</odoo>
