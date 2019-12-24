@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>  
+    <data>
+        <!-- Form untuk memilih sales person dan tanggal mulai dan tanggal akhir -->
+        <record id="ng_sale_wizard_form" model="ir.ui.view">
+            <field name="name">Sales Report in Excel Format</field>
+            <field name="model">ng.sale.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sales Report in Excel Format">
+                    <group>
+                        <group>
+                            <field name="user_id" required="1" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                        </group>
+                    </group>
+                    <footer>                        
+                        <button name="get_excel_report" string="Export (XLS)" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record> 
+
+        <!-- Action untuk membuka form diatas -->
+        <record model="ir.actions.act_window" id="action_open_ng_sale_wizard_form">
+            <field name="name">Sales Report in Excel Format</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ng.sale.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- Tambah menu baru di Sale >> Reportng -->
+        <menuitem name="Sales Report in Excel Format"
+                id="menu_sale_report_in_excel"
+                parent="sale.menu_sale_report"
+                action="action_open_ng_sale_wizard_form" />
+
+        
+    </data>
+</odoo>
