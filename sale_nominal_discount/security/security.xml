@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+    	Group untuk menampilkan dan menyembunyikan discount nominal
+    	group ini nantinya diatur lewat menu Sales >> Configuration >> Setting
+    -->
+    <record id="group_discount_nominal" model="res.groups">
+        <field name="name">Discount Nominal Before</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>    
+</odoo>

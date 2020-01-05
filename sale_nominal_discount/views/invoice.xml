@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_form_inherit" model="ir.ui.view">
+        <field name="name">invoice.form.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="after">
+                <field name="discount_nominal" groups="sale_nominal_discount.group_discount_nominal"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
