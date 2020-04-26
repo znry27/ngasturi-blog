@@ -9,7 +9,9 @@
             
         """,
     "depends": [
-        "sale", 
+        "sale",
+        "website",
+        "website_sale" 
     ],
     "data": [
         "views/templates.xml"

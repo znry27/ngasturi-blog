@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<template id="sale_list" name="Daftar Sales">&lt;!DOCTYPE html&gt;
-		<html>
-			<head>
-				<title>Latihan Controller Odoo</title>
+    <template id="sale_list" name="Daftar Sales">&lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <title>Latihan Controller Odoo</title>
 
-				<!-- CDN Asset -->
-				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-				<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                <!-- CDN Asset -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+                <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-				<!-- Custom Asset -->
-				<link rel="stylesheet" href="/tutorial_controller/static/css/custom.css"/>
-				<script type="text/javascript" src="/tutorial_controller/static/js/custom.js"></script>
-			</head>
-		</html>
-		<body>
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h2 class="sale-title">Daftar Sales Order</h2>
-						<table class="table table-hover">
-							<tr>
-								<th>No Dokumen</th>
-								<th>Customer</th>
-								<th>Total</th>
-								<th>Action</th>
-							</tr>
-							<t t-foreach="orders" t-as="order">
-								<tr>
-									<td>
-										<t t-esc="order.name" />
-									</td>
-									<td>
-										<t t-esc="order.partner_id.name" />
-									</td>
-									<td>
-										<t t-esc="order.amount_total" />
-									</td>
-									<td>
-										<button class="btn btn-sm btn-danger btn-delete-sale" t-att-data-sale-number="order.name">Delete</button>
-									</td>
-								</tr>
-							</t>
-						</table>
-					</div>
-				</div>
-			</div>
-		</body>
-	</template>
+                <!-- Custom Asset -->
+                <link rel="stylesheet" href="/tutorial_controller/static/css/custom.css"/>
+                <script type="text/javascript" src="/tutorial_controller/static/js/custom.js"></script>
+            </head>
+        </html>
+        <body>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="sale-title">Daftar Sales Order</h2>
+                        <table class="table table-hover">
+                            <tr>
+                                <th>No Dokumen</th>
+                                <th>Customer</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                            <t t-foreach="orders" t-as="order">
+                                <tr>
+                                    <td>
+                                        <t t-esc="order.name" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="order.partner_id.name" />
+                                    </td>
+                                    <td>
+                                        <t t-esc="order.amount_total" />
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger btn-delete-sale" t-att-data-sale-number="order.name">Delete</button>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </template>
 
-	<template id="assets_frontend_inherit" inherit_id="website.assets_frontend">
-		<!-- masukkan file css custom paling bawah -->
+    <template id="assets_frontend_inherit" inherit_id="website.assets_frontend">
+        <!-- masukkan file css custom paling bawah -->
         <xpath expr="link[last()]" position="after">
             <link rel="stylesheet" href="/tutorial_controller/static/css/custom.css"/>
         </xpath>
@@ -61,110 +61,288 @@
     </template>
 
     <template id="website_sale_list" name="Daftar Sales Website">
-    	<!-- panggil view website.layout agar navbar dll tampil -->
+        <!-- panggil view website.layout agar navbar dll tampil -->
         <t t-call="website.layout">
-        	<!-- tambah judul halaman -->
-        	<t t-set="additional_title" t-value="'Daftar Sales'" />
+            <!-- tambah judul halaman -->
+            <t t-set="additional_title" t-value="'Daftar Sales'" />
             <div id="wrap">
                 <div class="container">
-					<div class="row">
-						<div class="col-12">
-							<h2 class="sale-title">Daftar Sales Order</h2>
-							<table class="table table-hover">
-								<tr>
-									<th>No Dokumen</th>
-									<th>Customer</th>
-									<th>Total</th>
-									<th>Action</th>
-								</tr>
-								<t t-foreach="orders" t-as="order">
-									<tr>
-										<td>
-											<t t-esc="order.name" />
-										</td>
-										<td>
-											<t t-esc="order.partner_id.name" />
-										</td>
-										<td>
-											<t t-esc="order.amount_total" />
-										</td>
-										<td>
-											<button class="btn btn-sm btn-danger btn-delete-sale" t-att-data-sale-number="order.name">Delete</button>
-										</td>
-									</tr>
-								</t>
-							</table>
-						</div>
-					</div>
-				</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="sale-title">Daftar Sales Order</h2>
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>No Dokumen</th>
+                                    <th>Customer</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                                <t t-foreach="orders" t-as="order">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="order.name" />
+                                        </td>
+                                        <td>
+                                            <t t-esc="order.partner_id.name" />
+                                        </td>
+                                        <td>
+                                            <t t-esc="order.amount_total" />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger btn-delete-sale" t-att-data-sale-number="order.name">Delete</button>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </t>
     </template>
 
     <template id="sale_support" name="Sales Support">
         <t t-call="website.layout">
-        	<t t-set="additional_title" t-value="'Sales Support'" />
+            <t t-set="additional_title" t-value="'Sales Support'" />
             <div id="wrap">
                 <div class="container">
-					<div class="row">
-						<div class="col-12">
-							<h2 class="sale-title">Sales Support</h2>	
-							<form action="/sale/support/response" method="post">
-								<!-- 
-									set csrf token, agar lebih secure,
-									jika tidak diset, pastikan pada controller paremeter csrf diset False
-								-->
-								<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-			                                <label class="col-form-label">Nama</label>
-			                                <input type="text" name="name" class="form-control" />
-			                            </div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-			                                <label class="col-form-label">Email</label>
-			                                <input type="email" name="email" class="form-control" />
-			                            </div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12">
-										<div class="form-group">
-			                                <label class="col-form-label">Keluhan</label>
-			                                <textarea rows="5" class="form-control" name="issue"></textarea>
-			                            </div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12">
-										<button type="submit" class="btn btn-success">Kirim</button>
-									</div>
-								</div>
-							</form>						
-						</div>						
-					</div>
-				</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="sale-title">Sales Support</h2>    
+                            <form action="/sale/support/response" method="post">
+                                <!-- 
+                                    set csrf token, agar lebih secure,
+                                    jika tidak diset, pastikan pada controller paremeter csrf diset False
+                                -->
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Nama</label>
+                                            <input type="text" name="name" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Email</label>
+                                            <input type="email" name="email" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Keluhan</label>
+                                            <textarea rows="5" class="form-control" name="issue"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success">Kirim</button>
+                                    </div>
+                                </div>
+                            </form>                        
+                        </div>                        
+                    </div>
+                </div>
             </div>
         </t>
     </template>
 
     <template id="sale_support_response" name="Sales Support Response">
         <t t-call="website.layout">
-        	<t t-set="additional_title" t-value="'Sales Support'" />
+            <t t-set="additional_title" t-value="'Sales Support'" />
             <div id="wrap">
                 <div class="container">
-					<div class="row">
-						<div class="col-12">
-							<h2 class="sale-title">Sales Support</h2>	
-							<h3>Terima kasih atas feedback anda. Berikut ini adalah data yang anda masukkan</h3>
-							<h3>Nama : <t t-esc="name"/></h3>
-							<h3>Email : <t t-esc="email"/></h3>		
-							<h3>Keluhan : <t t-esc="issue"/></h3>	
-						</div>						
-					</div>
-				</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="sale-title">Sales Support</h2>    
+                            <h3>Terima kasih atas feedback anda. Berikut ini adalah data yang anda masukkan</h3>
+                            <h3>Nama : <t t-esc="name"/></h3>
+                            <h3>Email : <t t-esc="email"/></h3>        
+                            <h3>Keluhan : <t t-esc="issue"/></h3>    
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="upload_form" name="Upload File Form">
+        <!-- panggil view website.layout agar navbar dll tampil -->
+        <t t-call="website.layout">
+            <!-- tambah judul halaman -->
+            <t t-set="additional_title" t-value="'Upload Sale Payment'" />
+            <div id="wrap">
+                <div class="container">
+                    <div class="row">
+                    	<div class="col-12">
+                            <h2 class="sale-title">Upload Sale Payment</h2>    
+                            <form action="/process/upload" method="post" enctype="multipart/form-data">
+                                <!-- 
+                                    set csrf token, agar lebih secure,
+                                    jika tidak diset, pastikan pada controller paremeter csrf diset False
+                                -->
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Your Sale Order Number</label>
+                                            <input type="text" name="so_id" class="form-control" />
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <div class="row">
+                                	<div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Your Payment Document</label>
+                                            <input type="file" name="so_file" class="form-control" accept="image/*"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success">Upload</button>
+                                    </div>
+                                </div>
+                            </form>                        
+                        </div>           
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="upload_message" name="Upload Form Message">
+        <!-- panggil view website.layout agar navbar dll tampil -->
+        <t t-call="website.layout">
+            <!-- tambah judul halaman -->
+            <t t-set="additional_title" t-value="'Upload Message'" />
+            <div id="wrap">
+                <div class="container">
+                    <div class="row">
+                    	<div class="col-12">
+                            <h1>
+                            	<span t-esc="message" />
+                            </h1>
+                            <a href="/upload" class="btn btn-primary">Back</a> 
+                        </div>           
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- 
+    	jangan lupa untuk menulis nama module yang akan kita override sebelum external id
+    	sebagai tanda bawah kita override template pada module tersebut
+     -->
+    <template id="website_sale.product" name="Product">
+        <t t-call="website.layout">
+            <t t-set="additional_title" t-value="product.name" />
+            <div itemscope="itemscope" itemtype="http://schema.org/Product" id="wrap" class="js_sale">
+                <section t-attf-class="container py-2 oe_website_sale #{(compute_currency(product.lst_price) - product.website_price) &gt; 0.01 and website.get_current_pricelist().discount_policy == 'without_discount'  and 'discount'}" id="product_detail">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a t-att-href="keep(category=0)">Products</a>
+                                </li>
+                                <li t-if="category" class="breadcrumb-item">
+                                    <a t-att-href="keep('/shop/category/%s' % slug(category), category=0)" t-field="category.name" />
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    <span t-field="product.name" />
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-inline justify-content-end">
+                                <t t-call="website_sale.search"/>
+                                <t t-call="website_sale.pricelist_list">
+                                    <t t-set="_classes">ml-2</t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <t t-set="variant_img" t-value="any(product.mapped('product_variant_ids.image_variant'))"/>
+                            <t t-set="image_ids"  t-value="product.product_image_ids"/>
+                            <div id="o-carousel-product" class="carousel slide" data-ride="carousel" data-interval="0">
+                              <div class="carousel-outer">
+                                <div class="carousel-inner">
+                                    <div t-if="variant_img" class="carousel-item active" itemprop="image" t-field="product[:1].product_variant_id.image" t-options="{'widget': 'image', 'class': 'product_detail_img js_variant_img', 'alt-field': 'name', 'zoom': 'image', 'unique': str(product['__last_update']) + (str(product.product_variant_id['__last_update']) or '')}"/>
+                                    <div t-attf-class="carousel-item#{'' if variant_img else ' active'}" itemprop="image" t-field="product.image" t-options="{'widget': 'image', 'class': 'product_detail_img', 'alt-field': 'name', 'zoom': 'image', 'unique': product['__last_update']}"/>
+                                    <t t-if="len(image_ids)" t-foreach="image_ids" t-as="pimg">
+                                        <div class="carousel-item" t-field="pimg.image" t-options='{"widget": "image", "class": "product_detail_img", "alt-field": "name", "zoom": "image" }'/>
+                                    </t>
+                                </div>
+
+                                <t t-if="len(image_ids) or variant_img">
+                                    <a class="carousel-control-prev" href="#o-carousel-product" role="button" data-slide="prev" >
+                                        <span class="fa fa-chevron-left" role="img" aria-label="Previous" title="Previous"/>
+                                    </a>
+                                    <a class="carousel-control-next" href="#o-carousel-product" role="button" data-slide="next">
+                                        <span class="fa fa-chevron-right" role="img" aria-label="Next" title="Next"/>
+                                    </a>
+                                </t>
+                              </div>
+
+                              <ol class="carousel-indicators" t-if="len(image_ids) or variant_img">
+                                <li t-if="variant_img" data-target="#o-carousel-product" data-slide-to="0" class="active">
+                                    <img class="img img-fluid js_variant_img_small" t-attf-src="/website/image/product.product/{{product.product_variant_id.id}}/image/90x90" t-att-alt="product.name"/>
+                                </li>
+                                <li data-target="#o-carousel-product" t-att-data-slide-to="1 if variant_img else '0'" t-att-class="'' if variant_img else 'active'">
+                                    <img class="img img-fluid" t-attf-src="/website/image/product.template/{{product.id}}/image/90x90" t-att-alt="product.name"/>
+                                </li>
+                                <t t-if="len(image_ids)" t-foreach="image_ids" t-as="pimg">
+                                    <li data-target="#o-carousel-product" t-att-data-slide-to="pimg_index + (variant_img and 2 or 1)">
+                                        <img class="img img-fluid" t-attf-src="/website/image/product.image/{{pimg.id}}/image/90x90" t-att-alt="pimg.name"/>
+                                    </li>
+                                </t>
+                              </ol>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4 offset-xl-2" id="product_details">
+                            <h1 itemprop="name" t-field="product.name">Product Name</h1>
+                            <span itemprop="url" style="display:none;" t-esc="'%sshop/product/%s' % (request.httprequest.url_root, slug(product))"/>
+                            <form action="/shop/cart/update" method="POST">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                <div class="js_product js_main_product">
+                                    <t t-placeholder="select">
+                                        <input type="hidden" class="product_id" name="product_id" t-att-value="product.product_variant_id.id if len(product.product_variant_ids) == 1 else '0'" />
+                                        <input type="hidden" class="product_template_id" name="product_template_id" t-att-value="product.id" />
+                                        <t t-call="sale.variants">
+                                            <t t-set="ul_class" t-value="'flex-column'" />
+                                        </t>
+                                    </t>
+                                    <t t-call="website_sale.product_price" />
+                                    <p t-if="product.has_dynamic_attributes() or len(product.product_variant_ids) &gt; 1" class="css_not_available_msg bg-danger" style="padding: 15px;">This combination does not exist.</p>
+                                    <a role="button" id="add_to_cart" class="btn btn-primary btn-lg mt8 js_check_product a-submit" href="#">Add to Cart</a>
+                                </div>
+                            </form>
+                            <!-- tambahan tidak ada di source code asli odoo - start -->
+                            <hr />
+                            <p>
+                            	Available stock is <span t-esc="available_qty" /> <span t-esc="product_uom_name"/>
+                            </p>
+                            <!-- tambahan tidak ada di source code asli odoo - end -->
+                            <hr t-if="product.description_sale" />
+                            <div class="o_not_editable">
+                                <p t-field="product.description_sale" class="text-muted" />
+                            </div>
+                            <hr />
+                            <p class="text-muted">
+                              30-day money-back guarantee<br />
+                              Free Shipping in U.S.<br />
+                              Buy now, get in 2 days
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <div itemprop="description" t-field="product.website_description" class="oe_structure mt16" id="product_full_description" />
             </div>
         </t>
     </template>
