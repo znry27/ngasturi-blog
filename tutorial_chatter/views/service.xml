@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- form utama -->
+        <record id="service_form" model="ir.ui.view">
+            <field name="name">Service Form</field>
+            <field name="model">my.service</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>                    
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="pelanggan" />
+                                <field name="tanggal" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail">
+                                <field name="service_detail">
+                                    <tree editable="bottom">
+                                        <field name="product" />
+                                        <field name="keluhan" />
+                                        <field name="garansi" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- bagian diatas adalah view normal Odoo -->
+                    <!-- bagian dibawah ini adalah kode untuk menampilkan chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- form service detail, jika user klik data di tab Detail form ini akan dibuka -->
+
+        <record id="service_detail_form" model="ir.ui.view">
+            <field name="name">Service Detail Form</field>
+            <field name="model">my.service.detail</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>                    
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product" />
+                            </group>
+                            <group>
+                                <field name="keluhan" />
+                                <field name="garansi" />
+                            </group>
+                        </group>                        
+                    </sheet>
+                    <!-- bagian diatas adalah view normal Odoo -->
+                    <!-- bagian dibawah ini adalah kode untuk menampilkan chatter -->
+                    <!-- 
+                        karena form ini dipanggil dalam bentuk modal, jangan gunakan class oe_chatter.
+                        jika menggunakan class tersebut chatter tidak tampil di modal.   
+                    -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="open_service_form">
+            <field name="name">Service Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">my.service</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>        
+        
+        <menuitem name="Service"
+            id="service_main_menu"
+            web_icon="tutorial_chatter,static/description/icon.png"
+            action="open_service_form"
+            sequence="0" />
+        
+    </data>
+</odoo>
