@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+
+    <t t-name="WidgetOneTemplate">
+        <div>
+            <t t-if="widget.mode == 'edit' ">
+                <p>Ini adalah tampilan widget saat mode edit (user sedang mengedit dokumen)</p>
+            </t>
+            <t t-if="widget.mode == 'readonly' ">
+                <p>Ini adalah tampilan widget saat mode readonly (user hanya lihat dokumen)</p>
+            </t>
+        </div>
+    </t>
+
+</template>
